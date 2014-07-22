@@ -47,7 +47,7 @@ class QuranDownloader(object):
   
   def updateList(self, listFile):
     try:
-      with open(listFile, "r") as lFile:
+      with open(os.path.abspath(listFile), "r") as lFile:
         for lines in lFile:
           lines.strip()
           r1 = re.search(r"^([a-zA-Z]{1,20})\s{0,5}[:,\.-]\s{0,5}(http://.{5,150}/)$", lines)
