@@ -20,7 +20,6 @@ class QuranDownloader(object):
     self.lastFile = str()
 
   def setDir(self, saveDir):
-    #print(os.access(saveDir, os.R_OK))
     if not os.path.exists(saveDir):
       os.makedirs(saveDir)
     self.sdir = saveDir
@@ -130,7 +129,7 @@ class QuranDownloader(object):
     print("File szie: {} bytes.".format(fSize))
     qf = os.path.join(self.sdir, fileName)
     downloadedChunk = 0
-    blockSize = 2048 # (1024 * 2 - OK) (1024 * 8 = 8192)
+    blockSize = 2048 
 
     with open(qf, "wb") as sura:
       while True:
