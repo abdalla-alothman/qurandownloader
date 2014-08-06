@@ -137,13 +137,14 @@ class QuranDownloader(object):
         chunk = rq.read(blockSize)
         if not chunk:
           print("Download Complete. Stored as {}.".format(qf, fSize))
+          sys.stdout.write(chr(27) + "[?25h")
           break
         downloadedChunk += len(chunk)
         self.lastFile = qf
         sura.write(chunk)
         progress = float(downloadedChunk) / fSize
-        stat = r" Saving:ls {0} [{1:.2%}] of {2} bytes.".format(downloadedChunk, progress, fSize)
-        stat = stat + chr(8) * (len(stat) + 1)
+        stat = r"Saving:ls {0} [{1:.2%}] of {2} bytes.".format(downloadedChunk, progress, fSize)
+        stat = chr(27) + "[?25l" + stat + chr(8) * (len(stat) + 1)
         sys.stdout.write(stat)
         sys.stdout.flush()
 
